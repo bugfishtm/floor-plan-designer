@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="0.5"/>
+    </pattern>
+    <radialGradient id="r1floor" cx="35%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#1e140d"/>
+      <stop offset="100%" stop-color="#100b07"/>
+    </radialGradient>
+    <radialGradient id="r2floor" cx="60%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#111620"/>
+      <stop offset="100%" stop-color="#0a0e16"/>
+    </radialGradient>
+    <radialGradient id="r3floor" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#161210"/>
+      <stop offset="100%" stop-color="#0d0a08"/>
+    </radialGradient>
+    <radialGradient id="bloodR" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6a0000" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#2a0000" stop-opacity="0.3"/>
+    </radialGradient>
+    <radialGradient id="lightR" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffbb" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffff00" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="enemyGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#880000" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#440000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="spawnGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#004422" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#001a0a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#07070f" rx="18"/>
+  <rect width="400" height="400" fill="url(#grid)" rx="18"/>
+  <rect x="1" y="1" width="398" height="398" fill="none" stroke="#18182a" stroke-width="1.5" rx="17"/>
+
+  <!-- ── FLOORS ── -->
+  <!-- Room 1 top-left -->
+  <rect x="44"  y="44"  width="148" height="130" fill="url(#r1floor)"/>
+  <!-- Room 2 top-right -->
+  <rect x="210" y="44"  width="148" height="130" fill="url(#r2floor)"/>
+  <!-- Room 3 bottom -->
+  <rect x="44"  y="222" width="314" height="134" fill="url(#r3floor)"/>
+
+  <!-- ── OUTER WALLS ── -->
+  <g fill="#3c4350">
+    <rect x="36"  y="36"  width="328" height="8"/>   <!-- north -->
+    <rect x="36"  y="356" width="328" height="8"/>   <!-- south -->
+    <rect x="36"  y="36"  width="8"   height="328"/> <!-- west  -->
+    <rect x="356" y="36"  width="8"   height="328"/> <!-- east  -->
+  </g>
+
+  <!-- ── INTERNAL WALLS ── -->
+  <g fill="#424a58">
+    <!-- vertical R1/R2 divider, door gap y=120..152 -->
+    <rect x="193" y="36"  width="8" height="84"/>  <!-- above door -->
+    <rect x="193" y="152" width="8" height="22"/>  <!-- below door to h-wall -->
+
+    <!-- horizontal R1+R2 / R3 divider, door gaps x=90..122 and x=270..302 -->
+    <rect x="36"  y="214" width="54"  height="8"/> <!-- left of door1 -->
+    <rect x="122" y="214" width="148" height="8"/> <!-- between doors -->
+    <rect x="302" y="214" width="54"  height="8"/> <!-- right of door2 -->
+  </g>
+
+  <!-- ── DOOR ARCS ── -->
+  <g fill="none" stroke="#5588aa" stroke-width="1.8">
+    <!-- D1: vertical wall x=193, opening y=120..152, hinge at top, swings into R2 -->
+    <line x1="193" y1="120" x2="225" y2="120"/>
+    <path d="M 225 120 A 32 32 0 0 1 193 152"/>
+    <circle cx="193" cy="120" r="2.8" fill="#5588aa" stroke="none"/>
+
+    <!-- D2: horizontal wall y=214, opening x=90..122, hinge at left, swings into R3 -->
+    <line x1="90" y1="214" x2="90" y2="246"/>
+    <path d="M 90 246 A 32 32 0 0 0 122 214"/>
+    <circle cx="90" cy="214" r="2.8" fill="#5588aa" stroke="none"/>
+
+    <!-- D3: horizontal wall y=214, opening x=270..302, hinge at right, swings into R3 -->
+    <line x1="302" y1="214" x2="302" y2="246"/>
+    <path d="M 270 214 A 32 32 0 0 1 302 246"/>
+    <circle cx="302" cy="214" r="2.8" fill="#5588aa" stroke="none"/>
+  </g>
+
+  <!-- ── OBJECTS ── -->
+
+  <!-- Enemy spawn R1 -->
+  <circle cx="118" cy="118" r="22" fill="url(#enemyGlow)"/>
+  <circle cx="118" cy="118" r="13" fill="#5a0000" fill-opacity="0.9"/>
+  <circle cx="118" cy="118" r="12.5" fill="none" stroke="#cc2222" stroke-width="1.3"/>
+  <circle cx="118" cy="112" r="4"   fill="#cc2222" fill-opacity="0.85"/>
+  <path d="M 111 130 L 118 122 L 125 130" fill="none" stroke="#cc2222" stroke-width="1.5"/>
+  <line x1="115" y1="109" x2="111" y2="104" stroke="#cc2222" stroke-width="1.3"/>
+  <line x1="121" y1="109" x2="125" y2="104" stroke="#cc2222" stroke-width="1.3"/>
+
+  <!-- Blood stain R1 -->
+  <ellipse cx="148" cy="170" rx="20" ry="13" fill="url(#bloodR)"/>
+  <path d="M 136 167 C 130 161 132 153 140 152 C 146 148 152 152 154 158
+           C 159 152 167 154 166 162 C 170 167 166 175 158 175
+           C 156 182 148 183 142 179 C 136 182 130 177 136 167 Z"
+        fill="#4a0000" fill-opacity="0.8"/>
+  <circle cx="167" cy="182" r="3.5" fill="#3a0000" fill-opacity="0.6"/>
+  <circle cx="161" cy="188" r="2.2" fill="#380000" fill-opacity="0.5"/>
+
+  <!-- Light source R2 -->
+  <circle cx="302" cy="96"  r="26" fill="url(#lightR)"/>
+  <circle cx="302" cy="96"  r="6"  fill="#ffffcc" fill-opacity="0.9"/>
+  <g stroke="#ffffaa" stroke-opacity="0.85">
+    <line x1="302" y1="85"  x2="302" y2="78"  stroke-width="1.5"/>
+    <line x1="302" y1="107" x2="302" y2="114" stroke-width="1.5"/>
+    <line x1="291" y1="96"  x2="284" y2="96"  stroke-width="1.5"/>
+    <line x1="313" y1="96"  x2="320" y2="96"  stroke-width="1.5"/>
+    <line x1="294" y1="88"  x2="289" y2="83"  stroke-width="1.1"/>
+    <line x1="310" y1="88"  x2="315" y2="83"  stroke-width="1.1"/>
+    <line x1="294" y1="104" x2="289" y2="109" stroke-width="1.1"/>
+    <line x1="310" y1="104" x2="315" y2="109" stroke-width="1.1"/>
+  </g>
+
+  <!-- Note pin R2 -->
+  <circle cx="248" cy="150" r="9"   fill="#ccaa00" fill-opacity="0.85"/>
+  <circle cx="248" cy="150" r="8.5" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="0.8"/>
+  <circle cx="248" cy="150" r="3.2" fill="rgba(0,0,0,0.45)"/>
+  <line x1="248" y1="150" x2="248" y2="168" stroke="rgba(0,0,0,0.45)" stroke-width="2"/>
+
+  <!-- Player spawn R3 -->
+  <circle cx="136" cy="292" r="22" fill="url(#spawnGlow)"/>
+  <circle cx="136" cy="292" r="13" fill="#082a14" fill-opacity="0.9"/>
+  <circle cx="136" cy="292" r="12.5" fill="none" stroke="#00cc66" stroke-width="1.3"/>
+  <circle cx="136" cy="286" r="4"   fill="#00cc66" fill-opacity="0.85"/>
+  <path d="M 129 304 L 136 296 L 143 304" fill="none" stroke="#00cc66" stroke-width="1.5"/>
+
+  <!-- Save star R3 -->
+  <polygon points="218,279 221,288 231,288 223,294 226,303 218,297 210,303 213,294 205,288 215,288"
+           fill="#cccc00" fill-opacity="0.78" stroke="#aaaa00" stroke-width="0.8"/>
+
+  <!-- Key R3 -->
+  <circle cx="304" cy="292" r="9"  fill="none" stroke="#ccaa00" stroke-width="2.3"/>
+  <line x1="313" y1="292" x2="336" y2="292" stroke="#ccaa00" stroke-width="2.3"/>
+  <line x1="330" y1="292" x2="330" y2="299" stroke="#ccaa00" stroke-width="2"/>
+  <line x1="336" y1="292" x2="336" y2="299" stroke="#ccaa00" stroke-width="2"/>
+</svg>
